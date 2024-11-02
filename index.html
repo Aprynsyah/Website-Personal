@@ -170,14 +170,37 @@
         <h2>Contact</h2>
         <span>Connect With Us</span>
     </div>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("nk0na8wdWq-FA75nq"); // Ganti dengan Public Key Anda dari EmailJS
+        })();
+    </script>
+</head>
+<body>
     <div class="contact-form">
-        <form action="">
-            <input type="text" placeholder="Your Name">
-            <input type="email" name="" id="" placeholder="Your Email">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Write Message Here..."></textarea>
-            <input type="button" value="Send" class="contact-button">
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" cols="30" rows="10" placeholder="Write Message Here..." required></textarea>
+            <input type="submit" value="Send" class="contact-button">
         </form>
     </div>
+
+    <script>
+        // Menangani pengiriman form menggunakan EmailJS
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            emailjs.sendForm('service_dsyfdju', 'template_8qonxjf', this)
+                .then(function() {
+                    alert('Pesan berhasil terkirim!');
+                }, function(error) {
+                    console.log('Gagal mengirim pesan:', error);
+                    alert('Pesan tidak terkirim.');
+                });
+        });
+    </script>
 </section>
 <!-- Contact Section End -->
 <div class="footer">
